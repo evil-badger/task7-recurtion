@@ -13,7 +13,7 @@
         <div class="grid">
             <button class="myButton" onclick="arrayActions()">1.Манипуляции с массивом</button>
             <button class="myButton" onclick="deleteElem()">2.Создайте функцию removeNegativeElements, которая удаляет из входящего массива все негативные числа.</button>
-            <button class="myButton" onclick="empty()">3.Создайте функцию getStringElements, которая возвращает входящий массив только со строковыми значениями.</button>
+            <button class="myButton" onclick="includeString()">3.Создайте функцию getStringElements, которая возвращает входящий массив только со строковыми значениями.</button>
             <button class="myButton" onclick="empty()">4.Напищите функцию, которая рекурсивно суммирует все элементы массива, массив 10 элементов, заполнен случайными числами от 0 - 10, как в ДЗ ранее</button>
             <button class="myButton" onclick="empty()">5.Напишите функцию, рекурсивно сумирующую все элементы = 10</button>
             <button class="myButton" onclick="empty()">6.Напишите функцию, которая рекурсивно ищет все элементы > 5 и возвращает их ввиде массива</button>
@@ -48,6 +48,16 @@
                 let result=array.filter(elem=> elem>=0||typeof elem=='string');
                 console.log(result);
             }
+    }
+
+    function includeString(){
+        let arr = [1 , true , 42 , "red" , 64 , "green" , "web" , new Date() , -898 , false]
+        let result = getStringElements(arr); // ['green', 'web']
+        
+        function getStringElements(array){
+            let result=array.filter(elem=>typeof elem=='string');
+            console.log(result);
+        }
     }
 
     </script>
