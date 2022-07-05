@@ -14,9 +14,9 @@
             <button class="myButton" onclick="arrayActions()">1.Манипуляции с массивом</button>
             <button class="myButton" onclick="deleteElem()">2.Создайте функцию removeNegativeElements, которая удаляет из входящего массива все негативные числа.</button>
             <button class="myButton" onclick="includeString()">3.Создайте функцию getStringElements, которая возвращает входящий массив только со строковыми значениями.</button>
-            <button class="myButton" onclick="empty()">4.Напищите функцию, которая рекурсивно суммирует все элементы массива, массив 10 элементов, заполнен случайными числами от 0 - 10, как в ДЗ ранее</button>
-            <button class="myButton" onclick="empty()">5.Напишите функцию, рекурсивно сумирующую все элементы = 10</button>
-            <button class="myButton" onclick="empty()">6.Напишите функцию, которая рекурсивно ищет все элементы > 5 и возвращает их ввиде массива</button>
+            <button class="myButton" onclick="recurtionSum()">4.Напищите функцию, которая рекурсивно суммирует все элементы массива, массив 10 элементов, заполнен случайными числами от 0 - 10, как в ДЗ ранее</button>
+            <button class="myButton" onclick="recurtionSumEq10()">5.Напишите функцию, рекурсивно сумирующую все элементы = 10</button>
+            <button class="myButton" onclick="recurtionItemsOver5()">6.Напишите функцию, которая рекурсивно ищет все элементы > 5 и возвращает их ввиде массива</button>
         </div>
     </div>
 
@@ -60,6 +60,83 @@
         }
     }
 
+    function recurtionSum(){
+        let arr=[];
+        for(let i=0;i<10;i++){
+            arr[i]=Math.floor(Math.random()*11);
+        }
+        console.log(arr);
+        let result=getSum(arr);
+
+        function getSum(arr) {
+            let sum = arr.shift();
+            if (arr.length !== 0) {
+                sum += getSum(arr);
+            }
+            return sum;
+        }
+        console.log(result);
+    }
+
+    function recurtionSumEq10(){
+
+        const arr = [0, 2, 4, 5, 7, 10, 2, 3, 5, 6, 10, 3];
+        let result=getSum(arr); //в переменной записана функция с аргументом arr. Начинается вызов функции.
+      
+        function getSum(arr,accumulator=0) {  
+        //функция принимает массив, второй аргумент нигде не обьявлен, но почему-то ошибки нет
+        if(arr.length==0){  //если длинна массива сократилась до нулевого значения
+            return accumulator; //вернуть значение переменной. Куда она возвращается? В result? 
+                               //Откуда приходят аргументы - понятно. Куда возвращается результат - непонятно.
+        }
+        else { //пока массив ненулевой длинны, прерывания не происходит. это понятно.
+            const element=arr.shift(); //вырезаем первый элемент массива, длина массива меньше на 1 - понятно. 
+            //Исходный массив меняет значение. Почему? Если внутри массива можно менять значения, убирать, добавлять, то const не имеет смысла.
+            if(element===10){ 
+                accumulator+=element; //если значение элемента соответствует условию, то элемент добавляется в сумму аккумулятора. 
+                                     //Если условие не выполняется - элемент уничтожается? Стирается из памяти? 
+            }
+            return getSum(arr,accumulator); //Куда возвращается функция? В result?
+        }
+      }
+      console.log(result); //вывести результат. Считывание того что записано в переменной result
+    }
+    
+    function recurtionItemsOver5(){
+        const arr = [0, 2, 4, 5, 7, 10, 2, 3, 5, 6, 10, 3];
+        let result=getSum(arr);
+        function getSum(arr,accumulator=[]) {  
+            if(arr.length==0){  
+                return accumulator;                    
+            }
+            else { 
+                const element=arr.shift(); 
+                if(element>=5){ 
+                    accumulator.push(element); 
+                }
+                return getSum(arr,accumulator); 
+            }
+        }   
+        console.log(result);
+    }
+   /* function test(){
+        const arr = [0, 2, 4, 5, 7, 10, 2, 3, 5, 6, 10, 3];
+        const arr2=[];
+        console.log(arr.length); //12
+        console.log(arr.length>0); //true
+        console.log(arr.length==0); //false
+        console.log(!arr.length); //false
+
+        console.log(arr2.length); //0
+        console.log(arr2.length>0); //false
+        console.log(arr2.length==0); //true
+        console.log(!arr2.length); //true
+    
+    }
+*/
+    function newArrayOver5(){
+
+        }
     </script>
 </body>
 </html>
